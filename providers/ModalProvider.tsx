@@ -1,6 +1,7 @@
 'use client'
 
 import AuthModal from "@/components/AutModal"
+import UploadModal from "@/components/UploadModal";
 import { useEffect, useState } from "react"
 /**
  * we are ensuring that none of the modals can be seen or opened during server-side rendering  
@@ -25,6 +26,7 @@ const ModalProvider = () => {
     return (
        <>
             <AuthModal />
+            <UploadModal />
        </>
     )
 }
