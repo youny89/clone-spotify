@@ -6,6 +6,7 @@ import { RxCaretLeft, RxCaretRight } from "react-icons/rx"
 import { HiHome } from "react-icons/hi"
 import { BiSearch } from "react-icons/bi"
 import Button from "./Button"
+import useAuthModal from "@/hooks/useAuthModal"
 
 interface HeaderPops {
     children: React.ReactNode
@@ -14,7 +15,7 @@ interface HeaderPops {
 
 const Header = ({ children, className }: HeaderPops) => {
     const router = useRouter();
-
+    const authModal = useAuthModal();
     const handleLogout = () => {}
 
     return (
@@ -97,7 +98,7 @@ const Header = ({ children, className }: HeaderPops) => {
                     <>
                         <div>
                             <Button
-                                onClick={() => {}}
+                                onClick={authModal.onOpen}
                                 className="
                                     bg-transparent
                                     text-neutral-300
@@ -109,7 +110,7 @@ const Header = ({ children, className }: HeaderPops) => {
                         </div>
                         <div>
                             <Button
-                                onClick={() => {}}
+                                onClick={authModal.onOpen}
                                 className="
                                     bg-white
                                     font-medium
