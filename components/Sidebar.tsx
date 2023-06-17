@@ -7,12 +7,14 @@ import { BiSearch } from "react-icons/bi"
 import Box from "./Box"
 import SidebarItem from "./SidebarItem"
 import Library from "./Library"
+import { Song } from "@/types"
 
 interface SidebarProps {
     children: React.ReactNode
+    songs: Song[]
 }
 
-const Sidebar = ({ children }: SidebarProps) => {
+const Sidebar = ({ children, songs }: SidebarProps) => {
     const pathname = usePathname()
 
     const routes = useMemo(()=>[
@@ -56,7 +58,7 @@ const Sidebar = ({ children }: SidebarProps) => {
                 </div>
             </Box>
             <Box className="h-full">
-                <Library />
+                <Library songs={songs}/>
             </Box>
         </div>
         {/* flex-1 : 즉, flex-grow 속성의 값이 '1'이고 flex-shrink 속성의 값이 '1'이기 때문에 flex container의 크기에 따라 flex item의 크기도 커지거나 작아진다는 의미다. */}

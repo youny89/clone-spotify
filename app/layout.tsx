@@ -5,7 +5,7 @@
 // But we do need this sidebar component to be a client compoentns.
 // because we're going to do some dynamic stuff here.
   
-'use client'
+// 'use client'
 
 import Sidebar from '@/components/Sidebar'
 import './globals.css'
@@ -14,6 +14,7 @@ import SupabaseProvider from "../providers/SupabaseProvider";
 import UserProvider from '@/providers/UserProvider';
 import ModalProvider from '@/providers/ModalProvider';
 import ToastProvider from '@/providers/ToastProvider';
+import getSongsByUserId from '@/actions/getSongsByUserId';
 
 const font = Figtree({ subsets: ['latin'] })
 
@@ -22,11 +23,17 @@ export const metadata = {
   description: 'listen to music',
 }
 
-export default function RootLayout({
+// i don't want this layout to be cached
+export const revalidate = 0;
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+
+  const userSongs = await getSongsByUserId()
+
   return (
     <html lang="en">
       <body className={font.className}>
@@ -34,7 +41,7 @@ export default function RootLayout({
         <SupabaseProvider>
           <UserProvider>
             <ModalProvider />
-            <Sidebar>
+            <Sidebar songs={userSongs}>
               {children}
             </Sidebar>
           </UserProvider>
